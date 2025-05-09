@@ -1,0 +1,27 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+fastapienv/
+.env/
+
+# IDE/editor files
+.idea/
+.vscode/
+
+# macOS and Windows system files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Sensitive information
+*.env
+
+# Docker-related files (if using Docker)
+.docker/
+docker-compose.override.yml
