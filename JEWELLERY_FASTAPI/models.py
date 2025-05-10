@@ -1,5 +1,6 @@
 from JEWELLERY_FASTAPI.database import Base
 from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey, DateTime
+from sqlalchemy.sql import func
 
 
 class User(Base):
