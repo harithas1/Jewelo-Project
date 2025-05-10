@@ -13,7 +13,6 @@ password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-app = FastAPI()
 
 
 origins = ["*"]
@@ -94,7 +93,7 @@ def login(form_data: schemas.loginUser, db: Session=Depends(get_session)):
     if not user or not auth_service.verify_password(form_data.password,user.password):
         raise HTTPException(status_code=400,detail="Incorrect email or password")
     access_token = auth_service.create_access_token(data={"sub":str(user.id)})
-    return {"access token":access_token,"token_type":"Bearer"}
+    return {"access token":access_token,"token_type":"Bearer","id":user.id}
 
 
 @app.get("/verify-token", response_model=schemas.loginUser)
@@ -129,6 +128,25 @@ def get_products(db: Session = Depends(get_session)):
         })
 
     return {"products": product_list}
+
+
+@app.put("/products/update/{product_id}")
+def update_product(product_id: int, product: schemas.product, db: Session = Depends(get_session)):
+    existing_product = db.query(models.Products).filter(models.Products.id == product_id).first()
+
+    if not existing_product:
+        raise HTTPException(status_code=404, detail="Product not found")
+
+    existing_product.name = product.name
+    existing_product.image = product.image
+    existing_product.description = product.description
+    existing_product.price = product.price
+    existing_product.category = product.category
+    existing_product.stock = product.stock
+
+    db.commit()
+
+    return {"message": "Product updated successfully"}
 
 
 @app.get("/cart/items")
@@ -174,4 +192,23 @@ def add_to_cart(cart_item:schemas.cartItem, current_user:models.User = Depends(g
         db.add(new_cart_item)
     db.commit()
     return {"message":"item added to cart successfully"}
+
+
+
+@app.delete("/cart/remove")
+def remove_from_cart(cart_item_id: int, current_user: models.User = Depends(get_current_user),
+                     db: Session = Depends(get_session)):
+    cart_item = db.query(models.Cart).filter(models.Cart.id == cart_item_id,
+                                             models.Cart.user_id == current_user.id).first()
+
+    if not cart_item:
+        raise HTTPException(status_code=404, detail="Cart item not found")
+
+    db.delete(cart_item)
+    db.commit()
+
+    return {"message": "Item removed from cart successfully"}
+
+
+
 
