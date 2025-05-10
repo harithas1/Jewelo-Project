@@ -232,8 +232,8 @@ def create_order(
         "status": new_order.status
     }
 
-@app.delete("/cart/remove")
-def remove_from_cart(cart_item_id: schemas.RemoveCartItem, current_user: models.User = Depends(get_current_user),
+@app.delete("/cart/remove/{cart_item_id}")
+def remove_from_cart(cart_item_id: int, current_user: models.User = Depends(get_current_user),
                      db: Session = Depends(get_session)):
     cart_item = db.query(models.Cart).filter(models.Cart.id == cart_item_id,
                                              models.Cart.user_id == current_user.id).first()
