@@ -1,5 +1,9 @@
 from fastapi import FastAPI, Depends,HTTPException, Request, status
 from passlib.context import CryptContext
+from fastapi.middleware.cors import CORSMiddleware
+
+from starlette.responses import JSONResponse
+
 from JEWELLERY_FASTAPI import models, schemas, auth_service
 from JEWELLERY_FASTAPI.database import (engine, SessionLocal)
 from sqlalchemy.orm import Session
@@ -9,6 +13,24 @@ password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+app = FastAPI()
+
+
+origins = ["*"]
+
+origins = [
+    "http://127.0.0.1:8000",
+    "*",
+    ]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 def get_session():
     session=SessionLocal()
@@ -50,6 +72,10 @@ def get_current_user(request: Request, db: Session=Depends(get_session)):
 
 
 
+@app.get("/hello")
+def say_hello():
+    return {"message": "Hello, World!"}
+
 @app.post("/register")
 def register_user(user:schemas.registerUser,db:Session = Depends(get_session)):
     existing_user = db.query(models.User).filter_by(email = user.email).first()
@@ -68,7 +94,7 @@ def login(form_data: schemas.loginUser, db: Session=Depends(get_session)):
     if not user or not auth_service.verify_password(form_data.password,user.password):
         raise HTTPException(status_code=400,detail="Incorrect email or password")
     access_token = auth_service.create_access_token(data={"sub":str(user.id)})
-    return {"access token":access_token,"token_type":"bearer"}
+    return {"access token":access_token,"token_type":"Bearer"}
 
 
 @app.get("/verify-token", response_model=schemas.loginUser)
@@ -82,6 +108,56 @@ def add_product(product:schemas.product, db: Session = Depends(get_session)):
     db.add(new_product)
     db.commit()
     return {"message":"Product added successfully"}
+
+
+@app.get("/products")
+def get_products(db: Session = Depends(get_session)):
+    products = db.query(models.Products).all()
+    if not products:
+        return {"message": "No products found."}
+
+    product_list = []
+    for product in products:
+        product_list.append({
+            "id": product.id,
+            "name": product.name,
+            "image": product.image,
+            "description": product.description,
+            "price": product.price,
+            "stock": product.stock,
+            "category": product.category
+        })
+
+    return {"products": product_list}
+
+
+@app.get("/cart/items")
+def get_cart_items(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_session)):
+    cart_items = (
+        db.query(models.Cart)
+        .filter(models.Cart.user_id==current_user.id)
+        .all()
+    )
+    if not cart_items:
+        return {"message": "Your cart is empty."}
+
+    items = []
+    for item in cart_items:
+        product = db.query(models.Products).filter(models.Products.id == item.product_id).first()
+        if product:
+            items.append({
+                "cart_item_id": item.id,
+                "product_id": product.id,
+                "product_name": product.name,
+                "product_image": product.image,
+                "quantity": item.quantity,
+                "price_per_item": product.price,
+                "total_price": product.price * item.quantity
+            })
+
+    return {"cart_items": items}
+
+
 
 @app.post("/cart/add")
 def add_to_cart(cart_item:schemas.cartItem, current_user:models.User = Depends(get_current_user),db: Session = Depends(get_session)):
