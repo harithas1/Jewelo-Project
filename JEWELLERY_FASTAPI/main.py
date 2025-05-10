@@ -212,6 +212,8 @@ def create_order(
     new_order = models.Orders(
         user_id=current_user.id,
         product_id=product.id,
+        image = product.image,
+        name = product.name,
         quantity=order_data.quantity,
         total_price=total_price,
         status="pending"
@@ -246,6 +248,7 @@ def get_orders(current_user: models.User = Depends(get_current_user), db: Sessio
         order_list.append({
             "order_id": order.id,
             "product_id": order.product_id,
+            "image":order.image,
             "product_name": product.name if product else "Unknown",
             "quantity": order.quantity,
             "total_price": order.total_price,
