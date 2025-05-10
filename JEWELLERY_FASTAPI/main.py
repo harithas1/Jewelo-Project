@@ -232,6 +232,29 @@ def create_order(
         "status": new_order.status
     }
 
+
+@app.get("/orders")
+def get_orders(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_session)):
+    orders = db.query(models.Orders).filter(models.Orders.user_id == current_user.id).all()
+
+    if not orders:
+        return {"message": "No orders found."}
+
+    order_list = []
+    for order in orders:
+        product = db.query(models.Products).filter(models.Products.id == order.product_id).first()
+        order_list.append({
+            "order_id": order.id,
+            "product_id": order.product_id,
+            "product_name": product.name if product else "Unknown",
+            "quantity": order.quantity,
+            "total_price": order.total_price,
+            "created_at": order.created_at
+        })
+
+    return {"orders": order_list}
+
+
 @app.delete("/cart/remove/{cart_item_id}")
 def remove_from_cart(cart_item_id: int, current_user: models.User = Depends(get_current_user),
                      db: Session = Depends(get_session)):
