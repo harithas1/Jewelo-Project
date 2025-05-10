@@ -30,4 +30,6 @@ class CreateOrder(BaseModel):
     product_id: int
     quantity: int
 
+class RemoveCartItem(BaseModel):
+    cart_item_id: int
 
