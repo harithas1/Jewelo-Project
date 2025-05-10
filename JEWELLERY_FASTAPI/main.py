@@ -194,6 +194,43 @@ def add_to_cart(cart_item:schemas.cartItem, current_user:models.User = Depends(g
     return {"message":"item added to cart successfully"}
 
 
+@app.post("/orders/create")
+def create_order(
+    order_data: schemas.CreateOrder,
+    current_user: models.User = Depends(get_current_user),
+    db: Session = Depends(get_session)
+):
+    product = db.query(models.Products).filter(models.Products.id == order_data.product_id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+
+    if product.stock < order_data.quantity:
+        raise HTTPException(status_code=400, detail="Not enough stock available")
+
+    total_price = product.price * order_data.quantity
+
+    new_order = models.Orders(
+        user_id=current_user.id,
+        product_id=product.id,
+        quantity=order_data.quantity,
+        total_price=total_price,
+        status="pending"
+    )
+    db.add(new_order)
+
+    product.stock -= order_data.quantity
+
+    db.commit()
+    db.refresh(new_order)
+
+    return {
+        "message": "Order placed successfully",
+        "order_id": new_order.id,
+        "product": product.name,
+        "quantity": new_order.quantity,
+        "total_price": new_order.total_price,
+        "status": new_order.status
+    }
 
 @app.delete("/cart/remove")
 def remove_from_cart(cart_item_id: int, current_user: models.User = Depends(get_current_user),

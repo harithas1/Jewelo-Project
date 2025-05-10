@@ -1,5 +1,5 @@
 from JEWELLERY_FASTAPI.database import Base
-from sqlalchemy import Column, Integer, String, Float,Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey, DateTime
 
 
 class User(Base):
@@ -32,6 +32,15 @@ class Cart(Base):
     product_id = Column(Integer, ForeignKey("products.id"),nullable=False)
     quantity=Column(Integer, nullable=False, default=1)
 
+class Orders(Base):
+    __tablename__ = "orders"
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
+    quantity = Column(Integer, nullable=False, default=1)
+    total_price = Column(Float, nullable=False)
+    status = Column(String(50), default="pending")
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 
 

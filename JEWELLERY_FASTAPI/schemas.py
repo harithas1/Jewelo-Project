@@ -25,7 +25,9 @@ class cartItem(BaseModel):
     product_id: int
     quantity: int
 
-# class showCartItems(BaseModel):
-#     user_id: int
+
+class CreateOrder(BaseModel):
+    product_id: int
+    quantity: int
 
 
