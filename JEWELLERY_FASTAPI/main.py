@@ -248,7 +248,7 @@ def get_orders(current_user: models.User = Depends(get_current_user), db: Sessio
         order_list.append({
             "order_id": order.id,
             "product_id": order.product_id,
-            "image":order.image,
+            "image":product.image,
             "product_name": product.name if product else "Unknown",
             "quantity": order.quantity,
             "total_price": order.total_price,
