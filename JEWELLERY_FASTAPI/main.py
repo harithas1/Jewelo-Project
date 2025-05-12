@@ -210,8 +210,8 @@ def create_order(
     total_price = product.price * order_data.quantity
     print("..........",product)
     new_order = models.Orders(
-        user_id=current_user.user_id,
-        product_id=order_data.product_id,
+        user_id=current_user.id,
+        product_id=product.id,
         image = product.image,
         name = product.name,
         quantity=order_data.quantity,
