@@ -208,10 +208,10 @@ def create_order(
         raise HTTPException(status_code=400, detail="Not enough stock available")
 
     total_price = product.price * order_data.quantity
-
+    print("..........",product)
     new_order = models.Orders(
-        user_id=current_user.id,
-        product_id=product.id,
+        user_id=current_user.user_id,
+        product_id=order_data.product_id,
         image = product.image,
         name = product.name,
         quantity=order_data.quantity,

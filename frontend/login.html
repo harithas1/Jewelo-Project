@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        box-sizing: border-box;
+        color: #000;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+      }
+      .main-login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      header {
+        background-color: #fff;
+        padding: 20px 10px;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        z-index: 10;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+      nav div {
+        font-size: 30px;
+      }
+      nav ul li {
+        margin-right: 20px;
+        position: relative;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+      }
+      .profile-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 40px;
+        width: 90px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .dropdown a {
+        display: block;
+        padding: 10px;
+        color: #333;
+        font-size: 15px;
+        text-decoration: none;
+      }
+      .dropdown a:hover {
+        background-color: #f0f0f0;
+      }
+      i {
+        font-size: 20px;
+      }
+      .fa-cart-shopping {
+        padding-top: 7px;
+        color: black;
+      }
+      .login-container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        width: 320px;
+        text-align: center;
+        border: 1px solid #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .login-container h1 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        letter-spacing: 1px;
+        color: #000;
+      }
+
+      .login-container input {
+        width: 92%;
+        padding: 12px;
+        margin: 10px 0;
+        background-color: #fff;
+        border: 1px solid #000;
+        color: #000;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      .login-container input::placeholder {
+        color: #555;
+      }
+
+      .login-container button {
+        width: 100%;
+        padding: 12px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 14px;
+      }
+
+      .login-container button:hover {
+        background-color: #333;
+      }
+
+      .login-container p {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .login-container a {
+        color: #000;
+        text-decoration: underline;
+        transition: color 0.3s;
+      }
+
+      .login-container a:hover {
+        color: #555;
+      }
+      nav div .Title {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div><a href="/Index.html" class="Title">JEWELO</a></div>
+        <ul>
+          <li>
+            <a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <li>
+            <div class="profile-icon" onclick="toggleDropdown()">
+              <span><i class="fa-solid fa-user"></i></span>
+            </div>
+            <div class="dropdown" id="profileDropdown">
+              <a href="/login.html"
+                ><span
+                  ><i class="fa-solid fa-right-to-bracket"></i> Login</span
+                ></a
+              >
+              <a href="#" onclick="Logout()"
+                ><span><i class="fa-solid fa-circle-xmark"></i>Logout</span></a
+              >
+              <a href="#" onclick="goToOrders()"
+                ><span><i class="fa-solid fa-user"></i> Orders</span></a
+              >
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="main-login-container">
+      <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+          <input type="email" id="loginEmail" placeholder="Email" required />
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        <p>
+          Don't have an account? <a href="/Registration.html">Create Account</a>
+        </p>
+      </div>
+    </div>
+    <script src="./src/script.js"></script>
+    <script>
+      const form = document.getElementById("loginForm");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        const loginData = {
+          email: email,
+          password: password,
+        };
+
+        fetch("https://jewelo-project-backend.onrender.com/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Login failed");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Login successful:", data);
+            localStorage.setItem("Jewelo_token", data["access token"]);
+            localStorage.setItem("User_id", data.id);
+            alert("Login Successful");
+            window.location.href = "Index.html";
+          })
+          .catch((error) => {
+            console.error("Login error:", error);
+            alert("Invalid email or password");
+          });
+      });
+    </script>
+  </body>
+</html>

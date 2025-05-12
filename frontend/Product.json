@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "Le Damier Large Ring",
+    "description": "Elegant large ring in white gold and diamonds from the Le Damier collection.",
+    "price": 5200,
+    "category": "Ring",
+    "stock": 15,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-le-damier-de-louis-vuitton-large-ring-white-gold-and-diamonds--Q0K19F_PM2_Front%20view.png"
+  },
+  {
+    "id": 2,
+    "name": "Tumbler Ring",
+    "description": "Sophisticated tumbler ring crafted in white gold and diamonds, showcasing iconic craftsmanship.",
+    "price": 4800,
+    "category": "Ring",
+    "stock": 20,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-tumbler-ring-white-gold-and-diamonds--Q0L10A_PM1_Side%20view.png"
+  },
+  {
+    "id": 3,
+    "name": "Les Gastons Vuitton Small Ring",
+    "description": "Contemporary small ring in yellow gold and titanium, part of the Les Gastons Vuitton collection.",
+    "price": 3500,
+    "category": "Ring",
+    "stock": 18,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-les-gastons-vuitton-small-ring-yellow-gold-and-titanium--Q0H44H_PM2_Front%20view.png"
+  },
+  {
+    "id": 4,
+    "name": "Tumbler Bracelet",
+    "description": "Stunning tumbler bracelet in white gold and diamonds, blending luxury with contemporary design.",
+    "price": 8200,
+    "category": "Bracelet",
+    "stock": 10,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-tumbler-bracelet-white-gold-and-diamonds--QA5036_PM1_Side%20view.png"
+  },
+  {
+    "id": 5,
+    "name": "Empreinte Bracelet",
+    "description": "Delicate Empreinte bracelet in pink gold and diamonds, embodying timeless elegance and sophistication.",
+    "price": 7500,
+    "category": "Bracelet",
+    "stock": 12,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-empreinte-bracelet-pink-gold-and-diamonds--Q05335_PM2_Front%20view.png"
+  },
+  {
+    "id": 6,
+    "name": "Empreinte Bangle",
+    "description": "Sleek Empreinte bangle in white gold, featuring minimalist design with subtle detailing.",
+    "price": 6900,
+    "category": "Bracelet",
+    "stock": 14,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-empreinte-bangle-white-gold--QA5193_PM2_Front%20view.png"
+  },
+  {
+    "id": 7,
+    "name": "Le Damier Earrings",
+    "description": "Elegant Le Damier earrings in yellow gold and diamonds, combining classic charm with modern craftsmanship.",
+    "price": 4300,
+    "category": "Earrings",
+    "stock": 16,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-le-damier-de-louis-vuitton-earrings-yellow-gold-and-diamonds--Q16521_PM2_Front%20view.png"
+  },
+  {
+    "id": 8,
+    "name": "Ombre Blossom Mini Hoops",
+    "description": "Charming Ombre Blossom mini hoop earrings in pink gold and diamonds, radiating elegance and femininity.",
+    "price": 3900,
+    "category": "Earrings",
+    "stock": 22,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-ombre-blossom-mini-hoops-pink-gold-and-diamonds--Q06968_PM1_Side%20view.png"
+  },
+  {
+    "id": 9,
+    "name": "Ever Blossom Ear Studs",
+    "description": "Exquisite Ever Blossom ear studs in white gold and diamonds, blending delicate beauty with timeless luxury.",
+    "price": 4100,
+    "category": "Earrings",
+    "stock": 25,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-ever-blossom-ear-studs-white-gold---diamonds--Q16035_PM1_Side%20view.png"
+  },
+  {
+    "id": 10,
+    "name": "Le Damier Pendant",
+    "description": "Stylish Le Damier pendant in yellow gold and diamonds, a refined accessory from the iconic collection.",
+    "price": 5600,
+    "category": "Necklace",
+    "stock": 13,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-le-damier-de-louis-vuitton-pendant-yellow-gold-and-diamonds--Q03764_PM2_Front%20view.png"
+  },
+  {
+    "id": 11,
+    "name": "Tumbler Necklace",
+    "description": "Sophisticated tumbler necklace in white gold and diamonds, showcasing signature elegance.",
+    "price": 9200,
+    "category": "Necklace",
+    "stock": 8,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-tumbler-necklace-white-gold-and-diamonds--Q94900_PM2_Front%20view.png"
+  },
+  {
+    "id": 12,
+    "name": "Les Gastons Vuitton Trunk Pendant",
+    "description": "Unique Les Gastons Vuitton trunk pendant in white gold and diamond, inspired by iconic travel trunks.",
+    "price": 6500,
+    "category": "Necklace",
+    "stock": 9,
+    "image": "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-les-gastons-vuitton-trunk-pendant-white-gold-and-diamond--Q03084_PM1_Side%20view.png"
+  }
+]

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      header {
+        background-color: #fff;
+        padding: 20px 10px;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        z-index: 10;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+      nav div .Title {
+        text-decoration: none;
+        color: black;
+      }
+      nav div {
+        font-size: 30px;
+      }
+      nav ul li {
+        margin-right: 20px;
+        position: relative;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+      }
+      .profile-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 40px;
+        width: 90px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .dropdown a {
+        display: block;
+        padding: 10px;
+        color: #333;
+        font-size: 15px;
+        text-decoration: none;
+      }
+      .dropdown a:hover {
+        background-color: #f0f0f0;
+      }
+      i {
+        font-size: 20px;
+      }
+      .fa-cart-shopping {
+        padding-top: 7px;
+        color: black;
+      }
+      .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-left: 10px;
+      }
+      .Main-title-heading {
+        padding-top: 90px;
+      }
+      .productfromfour {
+        background-color: #fbf4ea;
+        max-width: 300px;
+        height: 400px;
+        cursor: pointer;
+      }
+      .Orders {
+        padding-top: 30px;
+        width: 100%;
+        max-width: 1300px;
+        min-height: 400px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        gap: 10px;
+        padding: 40px 20px;
+        text-align: center;
+      }
+      .Main-Image {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 80%;
+        height: 80%;
+        position: relative;
+      }
+      .Main-Image i {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .Text-saman {
+        height: 20%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .Text-saman h1 {
+        font-size: 18px;
+        font-weight: 400;
+      }
+
+      @media screen and (max-width: 1000px) {
+        .Orders {
+          grid-template-columns: 1fr 1fr;
+          height: auto;
+          max-width: 600px;
+        }
+        .categoryFilter {
+          max-width: 600px;
+        }
+        .productfromfour {
+          height: 400px;
+        }
+
+        .Main-Image {
+          height: 70%;
+          background-size: 70%;
+        }
+
+        .Text-saman h1 {
+          font-size: 16px;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        .productfromfour {
+          height: 280px;
+        }
+      }
+      .shop-now {
+        font-weight: 800;
+        font: 20px;
+        text-decoration: none;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div><a href="/Index.html" class="Title">JEWELO</a></div>
+        <ul>
+          <li>
+            <a href="/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <li>
+            <div class="profile-icon" onclick="toggleDropdown()">
+              <span><i class="fa-solid fa-user"></i></span>
+            </div>
+            <div class="dropdown" id="profileDropdown">
+              <a href="/login.html"
+                ><span
+                  ><i class="fa-solid fa-right-to-bracket"></i> Login</span
+                ></a
+              >
+              <a href="#" onclick="Logout()"
+                ><span><i class="fa-solid fa-circle-xmark"></i>Logout</span></a
+              >
+              <a href="#" onclick="goToOrders()"
+                ><span><i class="fa-solid fa-user"></i> Orders</span></a
+              >
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section class="main">
+      <h1 class="Main-title-heading">My Orders</h1>
+      <div class="Orders" id="orders"></div>
+    </section>
+    <script src="./src/script.js"></script>
+    <script>
+      const token = localStorage.getItem("Jewelo_token");
+      console.log(token);
+      fetch("https://jewelo-project-backend.onrender.com/orders", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          const OrdersDiv = document.getElementById("orders");
+          data.orders.forEach((product) => {
+            OrdersDiv.innerHTML += `
+              <div class="productfromfour onclick="goToProduct(${product.product_id})">
+                <div class="Main-Image" style="background-image: url(${product.image});">
+                </div>
+                <div class="Text-saman">
+                  <h1>${product.product_name}</h1>
+                  <p>
+                    <u class="shop-now" data-id="${product.id}" ">
+                        Pending
+                    </u>
+                  </p>
+                </div>
+              </div>
+            `;
+          });
+        })
+        .catch((error) => console.error("Error fetching products:", error));
+    </script>
+  </body>
+</html>
